@@ -7,13 +7,17 @@ const usersRouter = express.Router();
 usersRouter.post('/', async (req, res, next) => {
   try {
     if (!req.body.username || !req.body.password) {
-      return res.status(400).send({error: 'Username and password are required!'});
+      return res.status(400).send({
+        errors: {
+          username: !req.body.username ? {message: 'Username is required!'} : null,
+          password: !req.body.password ? {message: 'Password is required!'} : null,
+        },
+      });
     }
     const user = new User({
       username: req.body.username,
       password: req.body.password,
     });
-
 
     user.generateToken();
     await user.save();
@@ -28,7 +32,12 @@ usersRouter.post('/', async (req, res, next) => {
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
     if (!req.body.username || !req.body.password) {
-      return res.status(400).send({ error: 'Username and password are required!' });
+      return res.status(400).send({
+        errors: {
+          username: !req.body.username ? {message: 'Username is required!'} : null,
+          password: !req.body.password ? {message: 'Password is required!'} : null,
+        },
+      });
     }
 
     const user = await User.findOne({ username: req.body.username });

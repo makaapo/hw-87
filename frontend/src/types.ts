@@ -30,4 +30,10 @@ export interface GlobalError {
   error: string;
 }
 
+export interface FormForum {
+  title: string,
+  description: string
+  image: File | null;
+}
+
 
