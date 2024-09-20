@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, 'Title is a required field'],
   },
   user: {
     type: Schema.Types.ObjectId,

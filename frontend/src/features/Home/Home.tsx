@@ -1,8 +1,10 @@
+import Posts from '../Posts/Posts/Posts.tsx';
+
 const Home = () => {
 
   return (
     <>
-      Home
+      <Posts/>
     </>
   );
 };

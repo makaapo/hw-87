@@ -18,7 +18,7 @@ const NewPost: React.FC = () => {
   }
 
   const onFormSubmit = async (post: FormForum) => {
-    await dispatch(createPost(post));
+    await dispatch(createPost(post)).unwrap();
     navigate('/');
   };
 

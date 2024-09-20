@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Button, Grid, TextField} from '@mui/material';
-import {FormForum} from '../../types.ts';
-import FileInput from '../../UI/FileInput/FileInput.tsx';
+import {Button, CircularProgress, Grid, TextField} from '@mui/material';
+import {FormForum} from '../../../../types.ts';
+import FileInput from '../../../../UI/FileInput/FileInput.tsx';
+import {useAppSelector} from '../../../../app/hooks.ts';
+import {selectCreatePostError, selectCreatePostLoading} from '../../postsSlice.ts';
 
 
 interface Props {
@@ -9,6 +11,8 @@ interface Props {
 }
 
 const ForumForm: React.FC<Props> = ({onSubmit}) => {
+  const isCreating = useAppSelector(selectCreatePostLoading);
+  const error = useAppSelector(selectCreatePostError);
   const [state, setState] = useState<FormForum>({
     title: '',
     description: '',
@@ -39,6 +43,14 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
     }));
   };
 
+  const getFieldError = (fieldName: string) => {
+    try {
+      return error?.errors[fieldName].message;
+    } catch {
+      return undefined;
+    }
+  };
+
   return (
     <Grid container direction="column" spacing={2} component="form" onSubmit={submitFormHandler}>
       <Grid item>
@@ -50,8 +62,9 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
           id="title"
           name="title"
           value={state.title}
+          error={Boolean(getFieldError('title'))}
+          helperText={getFieldError('title')}
           onChange={inputChangeHandler}
-          required
         />
       </Grid>
       <Grid item>
@@ -59,7 +72,6 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
           sx={{
             width: '100%',
           }}
-          required
           multiline
           minRows={3}
           label="Description"
@@ -74,9 +86,10 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
       </Grid>
       <Grid item>
         <Button
+          disabled={isCreating}
           variant="contained"
           type="submit">
-          Create post
+          {isCreating ? <CircularProgress size={24}/> : 'Create Post'}
         </Button>
       </Grid>
     </Grid>
