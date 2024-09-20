@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import {Box, CircularProgress, Typography} from '@mui/material';
-import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
-import {selectPosts, selectPostsLoading} from '../postsSlice.ts';
-import {fetchPosts} from '../postsThunks.ts';
-import PostCard from '../components/PostCard/PostCard.tsx';
+import {useAppDispatch, useAppSelector} from '../../../app/hooks';
+import {selectPosts, selectPostsLoading} from '../postsSlice';
+import {fetchPosts} from '../postsThunks';
+import PostCard from '../components/PostCard/PostCard';
 
 const Posts: React.FC = () => {
   const dispatch = useAppDispatch();

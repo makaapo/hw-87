@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Button, CircularProgress, Grid, TextField} from '@mui/material';
-import {FormForum} from '../../../../types.ts';
-import FileInput from '../../../../UI/FileInput/FileInput.tsx';
-import {useAppSelector} from '../../../../app/hooks.ts';
-import {selectCreatePostError, selectCreatePostLoading} from '../../postsSlice.ts';
+import {FormForum} from '../../../../types';
+import FileInput from '../../../../UI/FileInput/FileInput';
+import {useAppSelector} from '../../../../app/hooks';
+import {selectCreatePostError, selectCreatePostLoading} from '../../postsSlice';
 
 
 interface Props {

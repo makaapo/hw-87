@@ -1,4 +1,4 @@
-import Posts from '../Posts/Posts/Posts.tsx';
+import Posts from '../PostsContainer/Posts/Posts';
 
 const Home = () => {
 

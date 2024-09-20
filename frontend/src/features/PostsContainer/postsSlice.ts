@@ -1,6 +1,6 @@
 import {Post, PostApi, ValidationError} from '../../types';
 import {createSlice} from '@reduxjs/toolkit';
-import {createPost, fetchOnePost, fetchPosts} from './postsThunks.ts';
+import {createPost, fetchOnePost, fetchPosts} from './postsThunks';
 
 interface PostsState {
   posts: Post[];

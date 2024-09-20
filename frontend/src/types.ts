@@ -51,4 +51,20 @@ export interface FormForum {
   image: File | null;
 }
 
+export interface Comment {
+  _id: string;
+  user: {
+    _id: string;
+    username: string;
+  };
+  post: string;
+  text: string;
+}
+
+export interface CommentMutation {
+  post: string;
+  text: string;
+}
+
+export type CommentBody = Omit<CommentMutation, 'post'>;
 

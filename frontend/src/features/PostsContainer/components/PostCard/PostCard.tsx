@@ -2,9 +2,9 @@ import React from 'react';
 import { Avatar, CardMedia, Grid, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import {API_URL} from '../../../../constans.ts';
-import {Post} from '../../../../types.ts';
-import PostBadge from './PostBadge.tsx';
+import {API_URL} from '../../../../constans';
+import {Post} from '../../../../types';
+import PostBadge from './PostBadge';
 
 interface Props {
   post: Post;

@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {Button, Grid, Menu, MenuItem} from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import {User} from '../../types.ts';
-import {useAppDispatch} from '../../app/hooks.ts';
-import {logout} from '../../features/User/usersThunks.ts';
+import {User} from '../../types';
+import {useAppDispatch} from '../../app/hooks';
+import {logout} from '../../features/User/usersThunks';
 import {useNavigate} from 'react-router-dom';
 
 interface Props {

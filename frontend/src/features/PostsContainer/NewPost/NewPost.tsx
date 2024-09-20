@@ -1,11 +1,11 @@
 import React from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
-import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
-import {selectUser} from '../../User/usersSlice.ts';
-import ForumForm from '../components/ForumForm/ForumForm.tsx';
-import {createPost} from '../postsThunks.ts';
-import {FormForum} from '../../../types.ts';
+import {useAppDispatch, useAppSelector} from '../../../app/hooks';
+import {selectUser} from '../../User/usersSlice';
+import ForumForm from '../components/ForumForm/ForumForm';
+import {createPost} from '../postsThunks';
+import {FormForum} from '../../../types';
 
 
 const NewPost: React.FC = () => {

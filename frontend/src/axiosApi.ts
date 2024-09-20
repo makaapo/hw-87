@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from './constans.ts';
+import {API_URL} from './constans';
 
 
 

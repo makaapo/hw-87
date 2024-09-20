@@ -1,10 +1,10 @@
 import {AppBar, Grid, styled, Toolbar, Typography} from '@mui/material';
 import {Link} from 'react-router-dom';
 import ForumIcon from '@mui/icons-material/Forum';
-import UserMenu from './UserMenu.tsx';
-import {useAppSelector} from '../../app/hooks.ts';
-import {selectUser} from '../../features/User/usersSlice.ts';
-import AnonymousMenu from './AnonymousMenu.tsx';
+import UserMenu from './UserMenu';
+import {useAppSelector} from '../../app/hooks';
+import {selectUser} from '../../features/User/usersSlice';
+import AnonymousMenu from './AnonymousMenu';
 
 
 const StyledLink = styled(Link)({
