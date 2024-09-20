@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from "mongoose";
-import auth, { RequestWithUser } from '../middleware/auth';
+import auth, {RequestWithUser} from '../middleware/auth';
 import Post from "../models/Post";
 import {imagesUpload} from "../multer";
 
@@ -8,7 +8,7 @@ const postRouter = express.Router();
 
 postRouter.get('/', async (req, res, next) => {
   try {
-    const post = await Post.find().populate('user', 'user').sort({datetime: -1});
+    const post = await Post.find().populate('user', 'username').sort({datetime: -1});
     return res.send(post);
   } catch (e) {
     next(e);
@@ -21,7 +21,7 @@ postRouter.get('/:id', async (req, res, next) => {
       res.status(400).send({error: 'Wrong Id!'});
     }
 
-    const post = await Post.findById(req.params.id).populate('user', 'user');
+    const post = await Post.findById(req.params.id).populate('user', 'username');
     return res.send(post);
   } catch (e) {
     next(e);
