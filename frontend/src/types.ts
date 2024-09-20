@@ -62,7 +62,7 @@ export interface Comment {
 }
 
 export interface CommentMutation {
-  post: string;
+  post_id: string;
   text: string;
 }
 

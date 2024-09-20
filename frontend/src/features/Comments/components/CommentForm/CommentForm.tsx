@@ -1,17 +1,23 @@
 import React, {useState} from 'react';
-import {Avatar, Grid, IconButton, Stack, TextField} from '@mui/material';
+import {Avatar, CircularProgress, Grid, IconButton, Stack, TextField} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import {deepOrange} from '@mui/material/colors';
 import {CommentBody} from '../../../../types';
+import {useAppSelector} from '../../../../app/hooks';
+import {selectCommentCreating, selectCreateError} from '../../сommentsSlice';
 
 interface Props {
   username: string;
   onSubmit: (comment: CommentBody) => void;
+  postId: string;
 }
 
-const CommentForm: React.FC<Props> = ({username, onSubmit}) => {
+const CommentForm: React.FC<Props> = ({username, onSubmit, postId}) => {
+  const isCreating = useAppSelector(selectCommentCreating);
+  const error = useAppSelector(selectCreateError);
   const [state, setState] = useState<CommentBody>({
     text: '',
+    post_id: postId,
   });
 
   const submitFormHandler = async (event: React.FormEvent) => {
@@ -20,8 +26,18 @@ const CommentForm: React.FC<Props> = ({username, onSubmit}) => {
     onSubmit(state);
     setState({
       text: '',
+      post_id: postId,
     });
   };
+
+  const getFieldError = () => {
+    try {
+      return error?.error;
+    } catch {
+      return undefined;
+    }
+  };
+
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
@@ -59,11 +75,17 @@ const CommentForm: React.FC<Props> = ({username, onSubmit}) => {
             placeholder="Add a comment"
             value={state.text}
             onChange={inputChangeHandler}
+            error={Boolean(getFieldError())}
+            helperText={getFieldError()}
           />
         </Grid>
         <Grid item>
-          <IconButton type="submit">
-            <SendIcon color="info" />
+          <IconButton type="submit" disabled={isCreating}>
+            {isCreating ? (
+              <CircularProgress size={24} />
+            ) : (
+              <SendIcon color="info" />
+            )}
           </IconButton>
         </Grid>
       </Grid>

@@ -89,6 +89,11 @@ const run = async () => {
       text: 'как они мне надоели',
     },
     {
+      user: user1,
+      post: post1,
+      text: 'наконец-то',
+    },
+    {
       user: user2,
       post: post4,
       text: ' хахахххаххахахах ору',
