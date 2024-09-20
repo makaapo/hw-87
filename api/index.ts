@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import config from './config';
 import cors from 'cors';
 import usersRouter from './routers/users';
+import postRouter from './routers/posts';
 
 const app = express();
 const port = 8000;
@@ -12,6 +13,7 @@ app.use(cors(config.corsOptions));
 app.use(express.static('public'));
 
 app.use('/users', usersRouter);
+app.use('/posts', postRouter);
 
 
 const run = async () => {
