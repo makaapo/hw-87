@@ -44,12 +44,9 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   const getFieldError = (fieldName: string) => {
-    try {
-      return error?.errors[fieldName].message;
-    } catch {
-      return undefined;
-    }
+    return error?.errors?.[fieldName]?.message;
   };
+
 
   return (
     <Grid container direction="column" spacing={2} component="form" onSubmit={submitFormHandler}>
@@ -79,6 +76,8 @@ const ForumForm: React.FC<Props> = ({onSubmit}) => {
           name="description"
           value={state.description}
           onChange={inputChangeHandler}
+          error={Boolean(getFieldError('description'))}
+          helperText={getFieldError('description')}
         />
       </Grid>
       <Grid item>

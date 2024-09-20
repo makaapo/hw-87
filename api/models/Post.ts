@@ -1,5 +1,6 @@
-import mongoose, {Types} from 'mongoose';
+import mongoose, {HydratedDocument, Types} from 'mongoose';
 import User from './User';
+import {PostFields} from '../types';
 
 const Schema = mongoose.Schema;
 
@@ -22,13 +23,23 @@ const PostSchema = new Schema({
   },
   description: {
     type: String,
+    validate: {
+      validator: function (this: HydratedDocument<PostFields>) {
+        return this.description || this.image;
+      },
+      message: 'Description or image must be present',
+    },
   },
-  image: String,
-
-  datetime: {
-    type: Date,
-    default: () => new Date(),
+  image: {
+    type: String,
+    validate: {
+      validator: function (this: HydratedDocument<PostFields>) {
+        return this.description || this.image;
+      },
+      message: 'Image or description must be present',
+    },
   },
+  datetime: Date,
 });
 
 const Post = mongoose.model('Post', PostSchema);

@@ -33,7 +33,7 @@ postRouter.post('/', auth, imagesUpload.single('image'), async (req: RequestWith
     const postMutation = new Post({
       user: req.user?._id,
       title: req.body.title,
-      description: req.body.description,
+      description: req.body.description ? req.body.description : null,
       datetime: new Date().toISOString(),
       image: req.file ? req.file.filename : null,
     });
