@@ -30,6 +30,21 @@ export interface GlobalError {
   error: string;
 }
 
+export interface Post {
+  _id: string;
+  user: {
+    _id: string;
+    username: string;
+  };
+  title: string;
+  image: string | null;
+  datetime: string;
+}
+
+export interface PostApi extends Post {
+  description: string | null;
+}
+
 export interface FormForum {
   title: string,
   description: string
